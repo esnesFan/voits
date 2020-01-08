@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class Conductor : MonoBehaviour
 {
-	public const float DEFAULT_VOLUME = 0.2f;
+	[Range(0.0f, 1.0f)]
+	public float volume;
 	
 	// 音楽
 	public AudioClip instrumentalMusicClip;		// 歌声を抜いた曲(インスト)
@@ -32,11 +33,15 @@ public class Conductor : MonoBehaviour
 		instrumentalMusicSource.clip = instrumentalMusicClip;
 		musicSource.clip = musicClip;
 		
-		instrumentalMusicSource.volume = DEFAULT_VOLUME;
-		musicSource.volume = DEFAULT_VOLUME;
+		instrumentalMusicSource.volume = volume;
+		musicSource.volume = volume;
 		
 		instrumentalMusicSource.mute = false;
 		musicSource.mute = true;
+		
+		Debug.Log ( this.GetType ().Name + "." + MethodBase.GetCurrentMethod ().Name + " ()  volume : " + volume );
+		Debug.Log ( this.GetType ().Name + "." + MethodBase.GetCurrentMethod ().Name + " ()  instrumentalMusicSource.mute : " + instrumentalMusicSource.mute );
+		Debug.Log ( this.GetType ().Name + "." + MethodBase.GetCurrentMethod ().Name + " ()  musicSource.mute : " + musicSource.mute );
 		
 		
 		// 曲を再生する
