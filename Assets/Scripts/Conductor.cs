@@ -39,7 +39,7 @@ public class Conductor : MonoBehaviour
 		musicSource.mute = true;
 		
 		
-		// 曲を再生
+		// 曲を再生する
 		instrumentalMusicSource.Play ();
 		musicSource.Play ();
 	}
@@ -47,10 +47,16 @@ public class Conductor : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		if ( Input.GetKeyDown ( KeyCode.Space ) || Input.GetKeyUp ( KeyCode.Space ) )
+		// SpaceKeyが押されていたらインストをmuteに、押されていなければ曲をmuteに設定する
+		if ( KeyboardListener.pressingKeyList.Contains ( KeyCode.Space ) )
 		{
-			instrumentalMusicSource.mute = !instrumentalMusicSource.mute;
-			musicSource.mute = !musicSource.mute;
+			instrumentalMusicSource.mute = true;
+			musicSource.mute = false;
+		}
+		else
+		{
+			instrumentalMusicSource.mute = false;
+			musicSource.mute = true;
 		}
 	}
 }
